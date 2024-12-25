@@ -112,7 +112,29 @@ public class Client {
         }
     }
 
-   
+
+    // Ajout d'un client
+    public void AjouterClient(ArrayList<Client> clients) {
+        Scanner scanner = new Scanner(System.in);
+
+        int Id = clients.size() + 1;
+        System.out.println("Saisie ces infos : ");
+        System.out.print("Nom: ");
+        String Nom = scanner.nextLine();
+        System.out.print("Prénom: ");
+        String Prenom = scanner.nextLine();
+        System.out.print("Email: ");
+        String Email = scanner.nextLine();
+        System.out.print("Addresse: ");
+        String Addresse = scanner.nextLine();
+       // String[] notesInput = scanner.nextLine().split(" ");
+        System.out.print("Telephone: ");
+        String Telephone = scanner.nextLine();
+
+        Compte compte = rechercherCompte(numeroCompte, comptes);
+        clients.add(new Client(Id, Nom, Prenom,Email,Telephone, Addresse));
+        System.out.println("Client ajout avec succes !");
+    }
 
 
 }
