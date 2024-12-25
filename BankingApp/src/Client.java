@@ -135,7 +135,40 @@ public class Client {
         clients.add(new Client(Id, Nom, Prenom,Email,Telephone, Addresse));
         System.out.println("Client ajout avec succes !");
     }
+  // Modification du Client
 
+    public void ModifierClient(ArrayList<Client> clients) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("ID de l'apprenant à modifier: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        for (Client client : clients) {
+            if (client.getId() == id) {
+                System.out.print("Nouveau Nom: ");
+                client.setNom(scanner.nextLine());
+                System.out.print("Nouveau Prénom: ");
+                client.setPrenom(scanner.nextLine());
+                System.out.print("Nouvel Email: ");
+                client.setEmail(scanner.nextLine());
+                System.out.print("Nouvelle Addresse: ");
+                Client.setAdresse(scanner.nextLine());
+                System.out.print("Nouveau num de  Telephone: ");
+                client.setTelephone(scanner.nextLine());
+
+
+
+
+                System.out.println("Apprenant modifié !");
+                return;
+            }
+        }
+        System.out.println("Apprenant introuvable !");
+    }
+
+    private static void setAdresse(String s) {
+    }
 
 }
 
