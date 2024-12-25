@@ -170,5 +170,16 @@ public class Client {
     private static void setAdresse(String s) {
     }
 
+
+    // Affichage d'un clients
+    public void AfficherClient(ArrayList<Client> clients) {
+        if (clients.isEmpty()) {
+            System.out.println("Aucun apprenant trouvé.");
+        } else {
+            for (Client apprenant : clients) {
+                System.out.println(apprenant);
+            }
+        }
+    }
 }
 
