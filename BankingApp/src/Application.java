@@ -14,6 +14,7 @@ public class Application {
         Scanner sc = new Scanner(System.in);
         int choix;
         do{
+
             System.out.println("1-Gestion Clients");
             System.out.println("2-Gestion Comptes");
             System.out.println("4-Quitter");
