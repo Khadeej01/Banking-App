@@ -76,4 +76,20 @@ public class CompteEpargne extends Compte {
                 }
             }
         }
+	    // La recherche du client pour l'associe a un compte epargne
+    public Client RechercherClient(int numero, ArrayList<Client> clients) {
+        for (Client client : clients) {
+            if (client.getId()==numero) {
+                return client;
+            }
+        }
+        return null;
+    }
+
+        @Override
+        public String toString () {
+            return "CompteEpargne{" +
+                    "tauxInteret=" + tauxInteret +
+                    "} " + super.toString();
+        }
 }
