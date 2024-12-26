@@ -68,4 +68,14 @@ public class CompteCourant extends Compte {
         System.out.println("Compte courant ajouter avec succes ^-^ ");
 
     }
+     // Affichage du compte courant
+    public void AfficherCompteCourant(ArrayList<CompteCourant> compteCourants) {
+        if (compteCourants.isEmpty()) {
+            System.out.println("Aucun apprenant trouvé.");
+        } else {
+            for (CompteCourant compteCourant : compteCourants) {
+                System.out.println(compteCourant);
+            }
+        }
+    }
 }
