@@ -42,4 +42,26 @@ public class CompteEpargne extends Compte {
                 System.out.println("Choix invalide");
                 break;
         }
-    }}
+    }
+
+    // Ajouter un compte epargne
+    public void AjouterCompteEpargne(ArrayList<CompteEpargne> compteEpargnes ,ArrayList<Client> clients) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("le numero du compte courant ");
+        String numero = sc.nextLine();
+        System.out.println("le solde du compte courant ");
+        double solde = sc.nextDouble();
+        System.out.println("les tauxInteret ");
+        double tauxInteret = sc.nextDouble();
+        CompteEpargne compteEpargne = new CompteEpargne();
+        System.out.println("le numero du proprietaire compte courant ");
+        int Nproprietaire = sc.nextInt();
+        Client client = compteEpargne.RechercherClient(Nproprietaire,clients);
+        if(client==null) {
+            System.out.println("La client n'existe pas");
+            return;
+        }
+        compteEpargnes.add(new CompteEpargne(tauxInteret,numero,solde,client) );
+        System.out.println("le compteEpargne ajouter avec succes ^-^ ");
+    }
+}
