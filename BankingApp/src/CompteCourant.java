@@ -78,4 +78,21 @@ public class CompteCourant extends Compte {
             }
         }
     }
+  // La recherche du clientpar numero pour l'asocie a un compte courant
+    public Client RechercherClient(int numero, ArrayList<Client> clients) {
+        for (Client client : clients) {
+            if (client.getId()==numero) {
+                return client;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public String toString() {
+        return "CompteCourant{" +
+                "FraisBancaire='" + FraisBancaire + '\'' +
+                "} " + super.toString();
+    }
 }
