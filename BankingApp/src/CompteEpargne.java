@@ -64,4 +64,16 @@ public class CompteEpargne extends Compte {
         compteEpargnes.add(new CompteEpargne(tauxInteret,numero,solde,client) );
         System.out.println("le compteEpargne ajouter avec succes ^-^ ");
     }
+
+// Affichage du compte Epargne
+
+        private void AfficherCompteEpargne(ArrayList<CompteEpargne> compteEpargnes, ArrayList<Client> clients) {
+            if (compteEpargnes.isEmpty()) {
+                System.out.println("Aucun apprenant trouvé.");
+            } else {
+                for (CompteEpargne compteEpargne : compteEpargnes) {
+                    System.out.println(compteEpargne);
+                }
+            }
+        }
 }
