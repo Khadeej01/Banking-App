@@ -114,7 +114,7 @@ public class Client {
 
 
     // Ajout d'un client
-    public void AjouterClient(ArrayList<Client> clients) {
+     public void AjouterClient(ArrayList<Client> clients) {
         Scanner scanner = new Scanner(System.in);
 
         int Id = clients.size() + 1;
@@ -127,13 +127,25 @@ public class Client {
         String Email = scanner.nextLine();
         System.out.print("Addresse: ");
         String Addresse = scanner.nextLine();
-       // String[] notesInput = scanner.nextLine().split(" ");
         System.out.print("Telephone: ");
         String Telephone = scanner.nextLine();
+        try {
 
-        Compte compte = rechercherCompte(numeroCompte, comptes);
+            // telephone contient seulmt des digits
+            for (char c : Telephone.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    throw new IllegalArgumentException("Le numero de téléphone doit contenir uniquement des chiffres.");
+                }
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erreur de saisie pour le téléphone : " + e.getMessage());
+            return;
+        }
+
+
         clients.add(new Client(Id, Nom, Prenom,Email,Telephone, Addresse));
-        System.out.println("Client ajout avec succes !");
+        System.out.println("Client ajout avec succes ^-^!");
     }
   // Modification du Client
 
