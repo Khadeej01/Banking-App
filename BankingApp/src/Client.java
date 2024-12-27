@@ -183,7 +183,7 @@ public class Client {
     }
 
 
-    // Affichage d'un clients
+        // Affichage d'un clients
     public void AfficherClient(ArrayList<Client> clients) {
         if (clients.isEmpty()) {
             System.out.println("Aucun apprenant trouvé.");
