@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Client {
     private int Id;
     private String Nom;
@@ -27,7 +30,7 @@ public class Client {
     }
 
     public void setId(int id) {
-        Id = Id;
+      this.Id = Id;
     }
 
     public String getNom() {
@@ -35,7 +38,8 @@ public class Client {
     }
 
     public void setNom(String nom) {
-        Nom = nom;
+
+        this.Nom = nom;
     }
 
     public String getPrenom() {
@@ -43,7 +47,8 @@ public class Client {
     }
 
     public void setPrenom(String prenom) {
-        Prenom = prenom;
+
+        this.Prenom = prenom;
     }
 
     public String getEmail() {
@@ -51,7 +56,8 @@ public class Client {
     }
 
     public void setEmail(String email) {
-        Email = email;
+
+        this.Email = email;
     }
 
     public String getAddress() {
@@ -59,7 +65,8 @@ public class Client {
     }
 
     public void setAddress(String addresse) {
-        Addresse = addresse;
+
+        this.Addresse = addresse;
     }
 
     public String getTelephone() {
@@ -67,7 +74,8 @@ public class Client {
     }
 
     public void setTelephone(String telephone) {
-        Telephone = telephone;
+
+        this.Telephone = telephone;
     }
 
     @Override
@@ -82,7 +90,7 @@ public class Client {
                 '}';
     }
 
-    public void gestionClient(ArrayList<Client> clients) {
+    public void GestionClient(ArrayList<Client> clients) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n--- Gestion des Client ---");
         System.out.println("1. Ajouter un Client");
@@ -102,19 +110,53 @@ public class Client {
                 ModifierClient(clients);
                 break;
             case 3:
-                //supprimerClient(clients);
+                SupprimerClient(clients);
                 break;
             case 4:
                 AfficherClient(clients);
                 break;
             default:
-            System.out.println("Choix invalide !");
+                System.out.println("Choix invalide !");
         }
+    }
+    public static boolean RegexEmail(String email){
+        final String regex ="^[a-z0-9](\\.?[a-z0-9]){5,}@gmail\\.com$";
+        Pattern pattern = Pattern.compile(regex);
+        final Matcher matcher = pattern.matcher(email);
+        if(matcher.find()){
+            System.out.println("Email valide !");
+            return true;
+        }else {
+            System.out.println("Resaisie un  Email(>5 car )");
+            return false;
+        }
+    }
+
+    // regex tel
+    public static boolean RegexTelaphone(String telephone) {
+        final String regex = "^((05)|(06)|(07))([0-9]{8})$";
+        Pattern pattern = Pattern.compile(regex);
+        final Matcher matcher = pattern.matcher(telephone);
+        if(matcher.find()){
+            System.out.println("Telephone valide !");
+            return true;
+
+
+        }else{
+            System.out.println("Telephone invalide !");
+            return false;
+
+
+        }
+
+
+
+
     }
 
 
     // Ajout d'un client
-     public void AjouterClient(ArrayList<Client> clients) {
+    public void AjouterClient(ArrayList<Client> clients) {
         Scanner scanner = new Scanner(System.in);
 
         int Id = clients.size() + 1;
@@ -123,12 +165,24 @@ public class Client {
         String Nom = scanner.nextLine();
         System.out.print("Prénom: ");
         String Prenom = scanner.nextLine();
-        System.out.print("Email: ");
-        String Email = scanner.nextLine();
+
+        String Email;
+        do {
+            System.out.print("Email: ");
+             Email = scanner.nextLine();
+
+
+        }while (!RegexEmail(Email));
+
         System.out.print("Addresse: ");
         String Addresse = scanner.nextLine();
-        System.out.print("Telephone: ");
-        String Telephone = scanner.nextLine();
+
+        do {
+            System.out.print("Telephone: ");
+            Telephone = scanner.nextLine();
+
+
+        }while (!RegexTelaphone(Telephone));
         try {
 
             // telephone contient seulmt des digits
@@ -147,7 +201,7 @@ public class Client {
         clients.add(new Client(Id, Nom, Prenom,Email,Telephone, Addresse));
         System.out.println("Client ajout avec succes ^-^!");
     }
-  // Modification du Client
+    // Modification du Client
 
     public void ModifierClient(ArrayList<Client> clients) {
         Scanner scanner = new Scanner(System.in);
@@ -155,6 +209,7 @@ public class Client {
         System.out.print("ID de l'apprenant à modifier: ");
         int id = scanner.nextInt();
         scanner.nextLine();
+
 
         for (Client client : clients) {
             if (client.getId() == id) {
@@ -165,25 +220,36 @@ public class Client {
                 System.out.print("Nouvel Email: ");
                 client.setEmail(scanner.nextLine());
                 System.out.print("Nouvelle Addresse: ");
-                Client.setAdresse(scanner.nextLine());
+                client.setAddress(scanner.nextLine());
                 System.out.print("Nouveau num de  Telephone: ");
                 client.setTelephone(scanner.nextLine());
 
-
-
-
-                System.out.println("Apprenant modifié !");
+                System.out.println("Apprenant modifié  avec succes ^-^!");
                 return;
             }
         }
         System.out.println("Apprenant introuvable !");
     }
 
-    private static void setAdresse(String s) {
+
+    // Supression du client
+public void SupprimerClient(ArrayList<Client> clients) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("ID du client  à supprimer: ");
+    int id = scanner.nextInt();
+    scanner.nextLine();
+
+
+    if (clients.removeIf(client -> client.getId() == id)) {
+        System.out.println("Client supprimé !");
+    } else {
+        System.out.println("Client introuvable !");
     }
+}
 
 
-        // Affichage d'un clients
+
+    // Affichage d'un clients
     public void AfficherClient(ArrayList<Client> clients) {
         if (clients.isEmpty()) {
             System.out.println("Aucun apprenant trouvé.");
@@ -193,5 +259,6 @@ public class Client {
             }
         }
     }
+
 }
 

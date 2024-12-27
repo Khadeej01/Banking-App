@@ -32,7 +32,12 @@ public class Application {
                  Compte.GestionCompte(compteCourants,compteEpargnes,clients);
                     break;
                     case 3:
-                        Operation.GestionOperation();
+                      Operation operation = new Operation();
+                      operation.GestionOperation(compteCourants,compteEpargnes);
+                            break;
+                        case 4:
+                            System.out.println("Au revoir ^-^");
+                            break;
                 default:
                     System.out.println(" choix invalide");
                     break;
